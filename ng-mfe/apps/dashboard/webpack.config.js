@@ -17,13 +17,10 @@ const tsConfigPath =
 
 const workspaceRootPath = path.join(__dirname, '../../');
 const sharedMappings = new mf.SharedMappings();
-sharedMappings.register(
-  tsConfigPath,
-  [
-    /* mapped paths to share */
-  ],
-  workspaceRootPath
-);
+sharedMappings.register(path.join(__dirname, '../../tsconfig.base.json'), [
+  '@ng-mfe/shared/data-access-user',
+]);
+
 
 module.exports = {
   output: {
