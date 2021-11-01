@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { fetch } from '@nrwl/angular';
 import { GalleryApiService } from '../api/gallery-api.service';
+import { map } from 'rxjs/operators';
 import * as GalleryActions from './gallery.actions';
 
 @Injectable()

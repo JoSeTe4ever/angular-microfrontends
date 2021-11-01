@@ -17,13 +17,9 @@ const tsConfigPath =
 
 const workspaceRootPath = path.join(__dirname, '../../');
 const sharedMappings = new mf.SharedMappings();
-sharedMappings.register(
-  tsConfigPath,
-  [
-    /* mapped paths to share */
-  ],
-  workspaceRootPath
-);
+sharedMappings.register(path.join(__dirname, '../../tsconfig.base.json'), [
+  '@mf-app/shared/data-store'
+]);
 
 module.exports = {
   output: {
@@ -42,16 +38,16 @@ module.exports = {
   plugins: [
     new ModuleFederationPlugin({
       remotes: {
-        gallery: 'gallery@http://localhost:5000/remoteEntry.js',
+        gallery: 'gallery@http://localhost:5000/remoteEntry.js'
       },
       shared: {
-        '@angular/core': { singleton: true, strictVersion: true },
-        '@angular/common': { singleton: true, strictVersion: true },
-        '@angular/common/http': { singleton: true, strictVersion: true },
-        '@angular/router': { singleton: true, strictVersion: true },
+        '@angular/core': { singleton: true, strictVersion: true , requiredVersion: '12.2.12'},
+        '@angular/common': { singleton: true, strictVersion: true, requiredVersion: '12.2.12'},
+        '@angular/common/http': { singleton: true, strictVersion: true, requiredVersion: '12.2.12'},
+        '@angular/router': { singleton: true, strictVersion: true, requiredVersion: '12.2.12'},
         ...sharedMappings.getDescriptors(),
       },
     }),
     sharedMappings.getPlugin(),
-  ],
+  ],  
 };

@@ -1,6 +1,5 @@
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on, Action } from '@ngrx/store';
-
 import * as GalleryActions from './gallery.actions';
 import { GalleryEntity } from './gallery.models';
 
@@ -10,6 +9,7 @@ export interface State extends EntityState<GalleryEntity> {
   selectedId?: string | number; // which Gallery record has been selected
   loaded: boolean; // has the Gallery list been loaded
   error?: string | null; // last known error (if any)
+  selectedCats: Map<string, any>;
 }
 
 export interface GalleryPartialState {
@@ -22,6 +22,7 @@ export const galleryAdapter: EntityAdapter<GalleryEntity> =
 export const initialState: State = galleryAdapter.getInitialState({
   // set initial required properties
   loaded: false,
+  selectedCats: new Map(),
 });
 
 const galleryReducer = createReducer(
@@ -37,7 +38,16 @@ const galleryReducer = createReducer(
   on(GalleryActions.loadGalleryFailure, (state, { error }) => ({
     ...state,
     error,
-  }))
+  })),
+  on(GalleryActions.toggleSelectCat, (state, { cat }) => {
+    const newState = { ...state };
+    if (newState.selectedCats.has(cat.id)) {
+      newState.selectedCats.delete(cat.id);
+    } else {
+      newState.selectedCats.set(cat.id, cat);
+    }
+    return newState;
+  }),
 );
 
 export function reducer(state: State | undefined, action: Action) {

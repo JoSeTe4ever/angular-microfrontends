@@ -9,3 +9,16 @@ To the remote app Nx automatically adds the remoteentryModule config on the app.
 ## run projects in parallel
 
 npx nx run-many --parallel --target=serve --projects=shell,gallery
+
+## source urls 
+
+https://itnext.io/building-angular-micro-frontend-with-ngrx-state-sharing-and-nx-cli-7e9af10ebd03#4594
+https://www.reddit.com/r/catswithjobs/.json
+
+## sharing data
+
+for sharing data in all the apps webconfig files.
+
+sharedMappings.register(path.join(__dirname, '../../tsconfig.base.json'), [
+    '@mf-app/shared/data-store'
+]);
