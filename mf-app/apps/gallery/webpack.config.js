@@ -27,7 +27,7 @@ sharedMappings.register(
 
 module.exports = {
   output: {
-    uniqueName: 'shell',
+    uniqueName: 'gallery',
     publicPath: 'auto',
   },
   optimization: {
@@ -41,8 +41,10 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      remotes: {
-        gallery: 'gallery@http://localhost:5000/remoteEntry.js',
+      name: 'gallery',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './Module': 'apps/gallery/src/app/remote-entry/entry.module.ts',
       },
       shared: {
         '@angular/core': { singleton: true, strictVersion: true },
