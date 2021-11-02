@@ -1,0 +1,52 @@
+{
+  "root": "apps/micro-discover",
+  "sourceRoot": "apps/micro-discover/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/micro-discover",
+        "main": "apps/micro-discover/src/main.ts",
+        "tsConfig": "apps/micro-discover/tsconfig.app.json",
+        "assets": ["apps/micro-discover/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/micro-discover/src/environments/environment.ts",
+              "with": "apps/micro-discover/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:execute",
+      "options": {
+        "buildTarget": "micro-discover:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/micro-discover/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/micro-discover"],
+      "options": {
+        "jestConfig": "apps/micro-discover/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
