@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -6,13 +7,12 @@ import { Injectable } from '@angular/core';
 })
 export class DiscoveryService {
 
-  private environmentUrl = "";
+  private environmentUrl = "http://localhost:3333/api";
 
   constructor(private _httpClient: HttpClient) {
-
   }
 
-  discover() {
-    return this._httpClient.get('')
+  discover(): Observable<any> {
+    return this._httpClient.get<any>(`${this.environmentUrl}/micros`)
   }
 }
