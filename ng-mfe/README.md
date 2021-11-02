@@ -12,7 +12,7 @@ https://itnext.io/building-angular-micro-frontend-with-ngrx-state-sharing-and-nx
 
 https://blog.bitsrc.io/how-we-build-micro-front-ends-d3eeeac0acfc
 
-How microservices could be discovered: 
+How microservices could be discovered:
 
 https://www.trendmicro.com/es_es/devops/21/h/micro-frontend-guide-technical-integrations.html
 ## run projects in parallel
