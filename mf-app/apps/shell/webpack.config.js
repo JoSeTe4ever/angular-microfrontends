@@ -41,10 +41,10 @@ module.exports = {
         //gallery: 'gallery@http://localhost:5000/remoteEntry.js' now it will be dynamically loaded by the service
       },
       shared: {
-        '@angular/core': { singleton: true, strictVersion: true , requiredVersion: '12.2.12'},
-        '@angular/common': { singleton: true, strictVersion: true, requiredVersion: '12.2.12'},
-        '@angular/common/http': { singleton: true, strictVersion: true, requiredVersion: '12.2.12'},
-        '@angular/router': { singleton: true, strictVersion: true, requiredVersion: '12.2.12'},
+        '@angular/core': { singleton: true, strictVersion: true , requiredVersion: '12.2.13'},
+        '@angular/common': { singleton: true, strictVersion: true, requiredVersion: '12.2.13'},
+        '@angular/common/http': { singleton: true, strictVersion: true, requiredVersion: '12.2.13'},
+        '@angular/router': { singleton: true, strictVersion: true, requiredVersion: '12.2.13'},
         ...sharedMappings.getDescriptors(),
       },
     }),
