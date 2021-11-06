@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 
 import { AppService } from './app.service';
 
@@ -14,5 +14,10 @@ export class AppController {
   @Get("/micros")
   getMicroFrontends() {
     return this.appService.getMicroFrontends();
+  }
+
+  @Post("/register")
+  registerMicroFrontend(@Body() message: any) {
+    return this.appService.registerMicroFrontend(message);
   }
 }

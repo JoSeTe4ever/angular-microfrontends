@@ -9,6 +9,7 @@ To the remote app Nx automatically adds the remoteentryModule config on the app.
 ## run projects in parallel
 
 npx nx run-many --parallel --target=serve --projects=shell,gallery
+npm run start-all  // this is a script that executes everything
 
 ## source urls 
 
@@ -27,3 +28,9 @@ sharedMappings.register(path.join(__dirname, '../../tsconfig.base.json'), [
 
 each microfrontend should have its own webpack.config.js file. The host/shell has this remotes: array, but it can be 
 loaded dinamically which makes more sense. Using the federation-runtime pluggin by Manfred.
+
+## todo 
+
+* Set the fallback strategy (like lazy-loading-promise) when a microfrotend could not be properly loaded.
+* Load the microfrontend from the backend microservice 
+* 
