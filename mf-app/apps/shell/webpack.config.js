@@ -38,7 +38,7 @@ module.exports = {
   plugins: [
     new ModuleFederationPlugin({
       remotes: {
-        gallery: 'gallery@http://localhost:5000/remoteEntry.js'
+        //gallery: 'gallery@http://localhost:5000/remoteEntry.js' now it will be dynamically loaded by the service
       },
       shared: {
         '@angular/core': { singleton: true, strictVersion: true , requiredVersion: '12.2.12'},

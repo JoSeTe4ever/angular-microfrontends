@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './app.routing.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
@@ -14,20 +15,7 @@ import { GalleryStoreModule } from '@mf-app/shared/data-store';
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     GalleryStoreModule,
-    RouterModule.forRoot(
-      [
-        {
-          path: '',
-          component: HomeComponent
-        },
-        {
-          path: 'gallery',
-          loadChildren: () =>
-            import('gallery/Module').then((m) => m.RemoteEntryModule),
-        },
-      ],
-      { initialNavigation: 'enabledBlocking' }
-    ),
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

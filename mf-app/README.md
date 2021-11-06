@@ -22,3 +22,8 @@ for sharing data in all the apps webconfig files.
 sharedMappings.register(path.join(__dirname, '../../tsconfig.base.json'), [
     '@mf-app/shared/data-store'
 ]);
+
+## pieces of thought 
+
+each microfrontend should have its own webpack.config.js file. The host/shell has this remotes: array, but it can be 
+loaded dinamically which makes more sense. Using the federation-runtime pluggin by Manfred.
