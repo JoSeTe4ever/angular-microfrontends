@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MicroFrontendRuntime } from '@mf-app/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class DiscoveryService {
   constructor(private _httpClient: HttpClient) {
   }
 
-  discover(): Observable<any> {
-    return this._httpClient.get<any>(`${this.environmentUrl}/micros`)
+  discover(): Observable<Array<MicroFrontendRuntime>> {
+    return this._httpClient.get<Array<MicroFrontendRuntime>>(`${this.environmentUrl}/micros`)
   }
 }

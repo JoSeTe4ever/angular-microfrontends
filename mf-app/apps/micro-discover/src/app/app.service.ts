@@ -7,7 +7,7 @@ export class AppService {
 
   //TODO backend storage
   currentMicroServicesRaw: Array<MicroFrontendRuntime> = [{
-    path: '/gallery',
+    path: 'gallery',
     appName: 'gallery',
     version: '1.0.0',
     remoteOptions: {
