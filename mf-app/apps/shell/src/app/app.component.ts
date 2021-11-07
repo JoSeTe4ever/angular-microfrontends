@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
         return {
           path: e.path,
           loadChildren: () =>
-            loadRemoteModule(e.remoteOptions).then((m) => m.RemoteEntryModule)
+            loadRemoteModule(e.remoteOptions).then((m) => m.RemoteEntryModule).catch( e => alert("error" + e) )
         };
       })
 
