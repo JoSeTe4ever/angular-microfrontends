@@ -8,5 +8,8 @@
     "target": "es2015"
   },
   "exclude": ["**/*.spec.ts"],
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts"],
+  "paths": {
+    "@mf-app/shared/data-store": ["../libs/shared/data-store/src/index.ts"],
+  }
 }
