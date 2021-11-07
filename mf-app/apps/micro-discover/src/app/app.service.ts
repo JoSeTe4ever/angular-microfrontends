@@ -6,7 +6,16 @@ import { MicroFrontendRuntime } from '@mf-app/interfaces';
 export class AppService {
 
   //TODO backend storage
-  currentMicroServicesRaw = [];
+  currentMicroServicesRaw: Array<MicroFrontendRuntime> = [{
+    path: '/gallery',
+    appName: 'gallery',
+    version: '1.0.0',
+    remoteOptions: {
+      remoteEntry: 'http://localhost:5000/remoteEntry.js',
+      exposedModule: './Module',
+      remoteName: 'gallery',
+    },
+  }];
 
 
   getData(): { message: string } {
@@ -17,7 +26,7 @@ export class AppService {
     return this.currentMicroServicesRaw;
   }
 
-  registerMicroFrontend(newOne : MicroFrontendRuntime) {
+  registerMicroFrontend(newOne: MicroFrontendRuntime) {
     this.currentMicroServicesRaw.push(newOne)
   }
 }

@@ -1,12 +1,22 @@
+import { LoadRemoteModuleOptions } from '@angular-architects/module-federation-runtime';
 export function interfaces(): string {
   return 'interfaces';
 }
 
-
 export interface MicroFrontendRuntime {
-  appName: string;
-  version: string;
-  remoteName: string,
-  remoteEntry: string,
-  exposedModule: string,
+  path?: string;
+  version?: string;
+  appName?: string;
+  remoteOptions: LoadRemoteModuleOptions
 }
+
+
+
+
+/**
+ * export declare type LoadRemoteModuleOptions = {
+    remoteEntry?: string;
+    remoteName: string;
+    exposedModule: string;
+};
+ */

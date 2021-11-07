@@ -1,7 +1,8 @@
-import { loadRemoteModule } from '@angular-architects/module-federation-runtime';
+import { loadRemoteModule, LoadRemoteModuleOptions } from '@angular-architects/module-federation-runtime';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GalleryFacade } from '@mf-app/shared/data-store';
+import { DiscoveryService } from '../services/discovery.service';
 import { APP_ROUTES } from './app.routing.module';
 
 @Component({
@@ -11,23 +12,28 @@ import { APP_ROUTES } from './app.routing.module';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private galleryFacade: GalleryFacade, private router: Router) {
+  constructor(private galleryFacade: GalleryFacade, private router: Router,
+    private discoveryService: DiscoveryService) {
 
-    //talk to backend about micro-frontends
-    //dynamic routes loaded here, instead of using import we use the dynamic runtime plugin 474110
-    const microfrontends = [{      
-      path: 'gallery',
-      loadChildren: () =>
-        // import('gallery/Module').then((m) => m.RemoteEntryModule),
-        loadRemoteModule({
-          remoteName: 'gallery',
-          remoteEntry: 'http://localhost:5000/remoteEntry.js',
-          exposedModule: './Module',
-        }).then((m) => m.RemoteEntryModule)
-    }]
+    this.discoveryService.discover().subscribe((readyMicroFrontends) => {
+      // TODO - add logic to handle the discovered micro frontends using map 
+      const promises: any[] = [];
+      const microfrontends = [{
+        path: 'gallery',
+        loadChildren: () => {
 
-    const allRoutes = [...microfrontends, ...APP_ROUTES];
-    router.resetConfig(allRoutes);
+          readyMicroFrontends.forEach((element: LoadRemoteModuleOptions) => {
+            promises.push(loadRemoteModule(element));
+          });
+
+          return Promise.all(promises).then((m: any) => m.RemoteEntryModule);
+        }
+      }];
+
+      const allRoutes = [...microfrontends, ...APP_ROUTES];
+      this.router.resetConfig(allRoutes);
+    });
+
   }
 
 
