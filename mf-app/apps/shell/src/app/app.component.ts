@@ -13,22 +13,25 @@ import { APP_ROUTES } from './app.routing.module';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private galleryFacade: GalleryFacade, private router: Router,
+  allRoutesPaths: Array<string | undefined> = [];
+
+  constructor(private galleryFacade: GalleryFacade,
+    private router: Router,
     private discoveryService: DiscoveryService) {
 
     this.discoveryService.discover().subscribe((readyMicroFrontends: Array<MicroFrontendRuntime>) => {
       const microfrontends = readyMicroFrontends.map(e => {
         return {
-          path: e.path, 
-          loadChildren: () => 
+          path: e.path,
+          loadChildren: () =>
             loadRemoteModule(e.remoteOptions).then((m) => m.RemoteEntryModule)
         };
       })
 
       const allRoutes = [...microfrontends, ...APP_ROUTES];
+      this.allRoutesPaths = allRoutes.map(e => `/${e.path}`);
       this.router.resetConfig(allRoutes);
     });
-
   }
 
 

@@ -1,5 +1,5 @@
 <ul>
-  <li routerLink="/">Home</li>
-  <li routerLink="/gallery">Gallery</li>
+  <li *ngFor="let path of allRoutesPaths" routerLink="{{path}}">{{path}}</li>
 </ul>
 <router-outlet></router-outlet>
+

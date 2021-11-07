@@ -14,7 +14,17 @@ export class AppService {
       remoteEntry: 'http://localhost:5000/remoteEntry.js',
       exposedModule: './Module',
       remoteName: 'gallery',
-    },
+    }
+  },
+  {
+    path: 'test',
+    appName: 'test',
+    version: '1.0.0',
+    remoteOptions: {
+      remoteEntry: 'http://localhost:5003/remoteEntry.js',
+      exposedModule: './Module',
+      remoteName: 'gallery',
+    }
   }];
 
 
